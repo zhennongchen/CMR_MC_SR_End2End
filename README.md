@@ -26,7 +26,7 @@ The script is based on tensorflow. You can build your own docker from the provid
     
 
 ### Data 
-We utilized a public dataset: [Cardiac Super-resolution Label Maps](https://data.mendeley.com/datasets/pw87p28). This dataset contains high-spatial resolution 3D balanced steady-state free precession cine CMR sequences. We simulated the inter-slice motion misalignment and z-axis downsampling and thus prepared paris of high-resolution and low-resolution data for supervised training. More details can be found in section 2.5.1 in the paper.
+We utilized a public dataset: [Cardiac Super-resolution Label Maps](https://data.mendeley.com/datasets/pw87p286yx/1). This dataset contains high-spatial resolution 3D balanced steady-state free precession cine CMR sequences. We simulated the inter-slice motion misalignment and z-axis downsampling and thus prepared paris of high-resolution and low-resolution data for supervised training. More details can be found in section 2.5.1 in the paper.
 
 Please contact zchen36@mgh.harvard.edu or chenzhennong@gmail.com for any further questions.
 
