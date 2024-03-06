@@ -1,4 +1,4 @@
-# An end-to-end deep learning solution to perform motion correction and super-resolution concurrently in CMR SAX slices
+# An end-to-end deep learning solution to perform motion correction (MC) and super-resolution (SR) concurrently in CMR SAX slices
 **Author: Zhennong Chen, PhD**<br />
 
 This is the GitHub repo for the paper: <br />
