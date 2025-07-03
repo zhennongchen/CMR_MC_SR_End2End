@@ -2,7 +2,7 @@
 
 # You should prepare the following before running this step. Please refer to the `example_data` folder for guidance:
 
-# 1. **the data you want to corect/process** 
+# 1. **the data you want to corect/process** , note it has to be segmentation (LV, Myo, RV) instead of CMR image
 
 # 2. **A patient list** that enumerates all your cases
 #    - To understand the standard format, please refer to the file:  

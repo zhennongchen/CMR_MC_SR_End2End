@@ -19,9 +19,12 @@ The entire code is [containerized](https://www.docker.com/resources/what-contain
 - Make sure you have ```voxelmorph``` installed.
 
 ### Data Preparation (we have examples available)
-- **High resolutional CMR contours**<br />
+- **High resolutional CMR contours** for simulation and training<br />
     - download the dataset from [Cardiac super-resolution label maps](https://data.mendeley.com/datasets/pw87p286yx/1)
     - we prepare two examples ```example_data/processed_HR_data/1081``` and ```/1256```.  <br />
+
+- **CMR data you want to correct** (in prediction)<br />
+    - it has to be segmentations (LV, myo, RV) instead of original image. <br />
 
 - **Patient list** that enumerates all your cases <br />
     - it lists the paired data with ground truth high-resolutional CMR and simulated motion-corrupted low-resolutional CMR. <br />
