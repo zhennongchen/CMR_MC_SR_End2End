@@ -1,0 +1,12 @@
+slice 0, total_distance: 0mm, vector mm: 0 0 vector pixel: 0 0 rotation: 0 degree
+slice 1, total_distance: 0mm, vector mm: 0 0 vector pixel: 0 0 rotation: 0 degree
+slice 2, total_distance: 1.99mm, vector mm: -1.01 1.71 vector pixel: -1.01 1.71 rotation: 0.0 degree
+slice 3, total_distance: 2.09mm, vector mm: 1.32 1.62 vector pixel: 1.32 1.62 rotation: 0.0 degree
+slice 4, total_distance: 2.65mm, vector mm: -1.75 2.0 vector pixel: -1.75 2.0 rotation: 0.0 degree
+slice 5, total_distance: 3.59mm, vector mm: -2.15 -2.87 vector pixel: -2.15 -2.87 rotation: 0.0 degree
+slice 6, total_distance: 3.33mm, vector mm: -1.86 2.76 vector pixel: -1.86 2.76 rotation: 0.0 degree
+slice 7, total_distance: 1.83mm, vector mm: 1.09 -1.47 vector pixel: 1.09 -1.47 rotation: 0.0 degree
+slice 8, total_distance: 1.54mm, vector mm: -0.55 1.44 vector pixel: -0.55 1.44 rotation: 0.0 degree
+slice 9, total_distance: 2.8mm, vector mm: -2.52 -1.23 vector pixel: -2.52 -1.23 rotation: 0.0 degree
+slice 10, total_distance: 0.81mm, vector mm: -0.55 -0.59 vector pixel: -0.55 -0.59 rotation: 0.0 degree
+slice 11, total_distance: 0mm, vector mm: 0 0 vector pixel: 0 0 rotation: 0 degree
