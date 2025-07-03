@@ -8,8 +8,8 @@ from scipy import interpolate
 from scipy.spatial import ConvexHull
 import cv2
 from skimage.measure import label, regionprops
-import CMR_HFpEF_Analysis.data_simulation.transformation as transform
-import CMR_HFpEF_Analysis.functions_collection as ff
+import CMR_MC_SR_End2End.data_simulation.transformation as transform
+import CMR_MC_SR_End2End.functions_collection as ff
  
 # check orientation
 # when image is in [x,y,z], the x-plane must have RV at left and LV at right

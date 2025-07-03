@@ -3,9 +3,6 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.keras.backend as kb
 from tensorflow.keras.layers import Layer
-import CMR_HFpEF_Analysis.Defaults as Defaults
-
-cg = Defaults.Parameters()
 
 
 
@@ -25,7 +22,7 @@ class element_1D(Layer):
 
 
 
-def learning_rate_step_decay(epoch, lr, step=cg.lr_epochs, initial_power=cg.initial_power):
+def learning_rate_step_decay(epoch, lr, step=25, initial_power=-4):
     """
     The learning rate begins at 10^initial_power,
     and decreases by a factor of 10 every `step` epochs.
@@ -36,7 +33,7 @@ def learning_rate_step_decay(epoch, lr, step=cg.lr_epochs, initial_power=cg.init
     print("Learning rate plan for epoch {} is {}.".format(epoch + 1, 1.0 * lrate))
     return np.float(lrate)
 
-def learning_rate_step_decay2(epoch, lr, step=cg.lr_epochs, initial_power=cg.initial_power):
+def learning_rate_step_decay2(epoch, lr, step=25, initial_power=-4):
     """
     The learning rate begins at 10^initial_power,
     and decreases by a factor of 10 every `step` epochs.
@@ -48,7 +45,7 @@ def learning_rate_step_decay2(epoch, lr, step=cg.lr_epochs, initial_power=cg.ini
     return np.float(lrate)
 
 
-def learning_rate_step_decay_classic(epoch, lr, decay = cg.decay_rate, initial_power=cg.initial_power, start_epoch = cg.start_epoch):
+def learning_rate_step_decay_classic(epoch, lr, decay = 0.01, initial_power=-4, start_epoch = 0):
     """
     The learning rate begins at 10^initial_power,
     and decreases by a factor of 10 every `step` epochs.

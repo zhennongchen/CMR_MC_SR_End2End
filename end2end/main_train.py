@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import CMR_HFpEF_Analysis.Defaults as Defaults
-import CMR_HFpEF_Analysis.Image_utils as util
+import CMR_HFpEF_Analysis.Image_utils as util 
 import CMR_HFpEF_Analysis.functions_collection as ff
 import CMR_HFpEF_Analysis.Hyperparameters as hyper
 import CMR_HFpEF_Analysis.Build_list_data_prepare.Build_list as Build_list
@@ -19,7 +19,7 @@ from contextlib import redirect_stdout
 
 cg = Defaults.Parameters()
 
-def train(val_batch,trial_name,data_sheet, epochs, load_model_file):
+def train(val_batch,trial_name,data_sheet, epochs, load_model_file): 
  
   # build lists
   print('Build List...')

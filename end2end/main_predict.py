@@ -1,20 +1,29 @@
-#!/usr/bin/env python
+## Data Preparation 
 
-import CMR_HFpEF_Analysis.Defaults as Defaults
-import CMR_HFpEF_Analysis.Image_utils as util
-import CMR_HFpEF_Analysis.functions_collection as ff
-import CMR_HFpEF_Analysis.Build_list_data_prepare.Build_list as Build_list
-import CMR_HFpEF_Analysis.end2end.model as end2end
-import CMR_HFpEF_Analysis.end2end.Generator as Generator
-import CMR_HFpEF_Analysis.Trained_models.end2end as end2end_models
+# You should prepare the following before running this step. Please refer to the `example_data` folder for guidance:
+
+# 1. **the data you want to corect/process** 
+
+# 2. **A patient list** that enumerates all your cases
+#    - To understand the standard format, please refer to the file:  
+#      `example_data/Patient_list/patient_list.xlsx`
+
+# Docker environment
+# Please use `docker`, it will build a tensorflow-based container 
+# make sure you have voxelmorph installed in the container
+
+import CMR_MC_SR_End2End.Image_utils as util
+import CMR_MC_SR_End2End.functions_collection as ff
+import CMR_MC_SR_End2End.Build_list.Build_list as Build_list
+import CMR_MC_SR_End2End.end2end.model as end2end
+import CMR_MC_SR_End2End.end2end.Generator as Generator
 
 import os
 import numpy as np
 import nibabel as nb
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
-mm = end2end_models.trained_models()
-cg = Defaults.Parameters()
+
 
 # build lists
 trial_name = 'end2end'

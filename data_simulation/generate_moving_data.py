@@ -2,9 +2,9 @@
 import numpy as np
 import math
 import nibabel as nb
-import CMR_HFpEF_Analysis.data_simulation.transformation as transform
-import CMR_HFpEF_Analysis.functions_collection as ff
-import CMR_HFpEF_Analysis.Image_utils as util
+import CMR_MC_SR_End2End.data_simulation.transformation as transform
+import CMR_MC_SR_End2End.functions_collection as ff
+import CMR_MC_SR_End2End.Image_utils as util
 
 ## generate movign data with preset translation range
 def generate_moving_data(img_ds, t_mu, t_sigma, t_bar, r_amplitude,  spacing, order, extreme = True):

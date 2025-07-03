@@ -1,14 +1,8 @@
-## tutorial: https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
-
 import numpy as np
 import os
 from tensorflow.keras.utils import Sequence
-import CMR_HFpEF_Analysis.Defaults as Defaults
-import CMR_HFpEF_Analysis.Image_utils as util
-import CMR_HFpEF_Analysis.motion_correction.data_augmentation as aug
-
-cg = Defaults.Parameters()
-
+import CMR_MC_SR_End2End.Image_utils as util
+import CMR_MC_SR_End2End.end2end.data_augmentation as aug
 
 class DataGenerator(Sequence):
 
@@ -23,11 +17,11 @@ class DataGenerator(Sequence):
         input_dimension = (128,128,12),
         output_vector_dimension = (12,2),
         output_img_dimension = (128,128,60),
-        shuffle = None,
+        shuffle = False,
         remove_slices = 'None',
         remove_pixel_num_threshold = None,
         remove_label = None,
-        relabel_myo = None,
+        relabel_myo = False,
         slice_augment = None,
         seed = 10):
 

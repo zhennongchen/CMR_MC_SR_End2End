@@ -23,6 +23,7 @@ RUN python3 -m pip install --no-cache-dir -r /env/requirements.txt
 
 # GitHub installations:
 RUN python3 -m pip install git+https://github.com/zhennongchen/CTProjector.git
+RUN python3 -m pip install voxelmorph
 
 # c3d 
 # RUN useradd -m -p c3dpwd -g sudo c3duser
