@@ -1,0 +1,106 @@
+#!/usr/bin/env python
+import CMR_HFpEF_Analysis.Defaults as Defaults
+import CMR_HFpEF_Analysis.Image_utils as util
+import CMR_HFpEF_Analysis.functions_collection as ff
+import CMR_HFpEF_Analysis.Trained_models.motion_correction_models as motion_correction_models
+import CMR_HFpEF_Analysis.motion_correction.ResNet as resnet
+import CMR_HFpEF_Analysis.motion_correction.Generator_motion as Generator_motion
+import CMR_HFpEF_Analysis.iterative.Build_list as Build_list
+import os
+import numpy as np
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input
+
+
+cg = Defaults.Parameters()
+mm = motion_correction_models.trained_models()
+
+###### define study and data
+trial_name = 'Iteration_C'
+study_set = 'Combined'
+iteration_num = 1
+save_folder = os.path.join(cg.predict_dir,study_set, trial_name, 'round_'+str(iteration_num), 'images')
+ff.make_folder([os.path.dirname(os.path.dirname(save_folder)),os.path.dirname(save_folder),save_folder])
+
+###### define data sheet
+data_sheet = os.path.join(cg.data_dir,'Patient_list/Patient_list_train_test_motion_flip_clean_7_slice_10_normal.xlsx')
+
+###### define model list:
+center_x_files, center_y_files = mm.Motion_ResNet_collection()
+files = [center_x_files, center_y_files]
+
+###### build patient list
+print('Build List...')
+b = Build_list.Build(data_sheet)
+batches = [0,1,2]
+x_list_predict, y_list_predict, patient_id_list, tf_list, motion_name_list, batch_list,_,_ = b.__build__(batch_list = batches)
+n = np.arange(0,patient_id_list.shape[0],1)
+x_list_predict = x_list_predict[n]
+y_list_predict = y_list_predict[n]
+
+###### create model architecture:
+input_shape = cg.input_dim + (1,)
+model_inputs = [Input(input_shape)]
+model_outputs=[]
+center_x, center_y = resnet.main_model(nb_filters = [32,64,128,256])(model_inputs[0])
+model_outputs += [center_x, center_y]
+
+
+###### do prediction
+for jj in range(0,len(center_x_files)):
+    for j in range(0,len(files)): #center_x: j=0, center_y: j=1,
+        f = files[j][jj]
+        print(f)
+        model= Model(inputs = model_inputs,outputs = model_outputs); model.load_weights(f)
+        
+        for i in range(0,x_list_predict.shape[0]):
+            patient_id = str(patient_id_list[n[i]])
+            timeframe = tf_list[n[i]]
+            motion_name = motion_name_list[n[i]]
+            batch = batch_list[n[i]]
+
+            if iteration_num == 1:
+                xx = x_list_predict[i]
+            else:
+                xx = os.path.join(cg.predict_dir,study_set, trial_name, 'round_' + str(iteration_num - 1), 'images', patient_id, timeframe, motion_name, 'pred_ds_flip_clean.nii.gz')
+                print(xx)
+            # in training?
+            allow_batches = mm.Motion_ResNet_index(batch)
+     
+            if jj not in allow_batches:
+                continue
+
+            # have image data?
+            if os.path.isfile(xx) == 0 or os.path.isfile(y_list_predict[i]) == 0:
+                print('no file'); continue
+
+            print(batch, patient_id, timeframe, motion_name)
+            save_sub = os.path.join(save_folder, patient_id, timeframe, motion_name,'centers' )
+            ff.make_folder([os.path.join(save_folder,patient_id), os.path.join(save_folder,patient_id, timeframe), os.path.join(save_folder, patient_id, timeframe, motion_name), save_sub])
+
+            if j == 0:
+                filename = 'center_x_' + str(jj) +'.npy'
+            elif j == 1:
+                filename = 'center_y_' + str(jj) +'.npy'
+            
+            # done?
+            if os.path.isfile(os.path.join(save_sub,filename)) == 1:
+                print('done'); continue
+
+
+            datagen = Generator_motion.DataGenerator(np.asarray([xx]), np.asarray([y_list_predict[i]]),patient_num =1,batch_size = cg.batch_size, 
+                                            num_classes = 2,
+                                            input_dimension = cg.input_dim,
+                                            output_dimension = (6,), 
+                                            shuffle = False,
+                                            remove_label= True,relabel_myo = True,
+                                            slice_augment = False,
+                                            )
+                                            
+            pred_delta_x_cp, pred_delta_y_cp = model.predict_generator(datagen, verbose = 1, steps = 1,)
+
+            pred_delta_x = np.concatenate([np.array([0]),np.asarray(pred_delta_x_cp).reshape(-1) / 2 * 128], axis = -1)
+            pred_delta_y = np.concatenate([np.array([0]),np.asarray(pred_delta_y_cp).reshape(-1) / 2 * 128], axis = -1)
+    
+
+            np.save(os.path.join(save_sub,filename), np.concatenate([pred_delta_x.reshape(1,-1), pred_delta_y.reshape(1,-1)],axis = 0))

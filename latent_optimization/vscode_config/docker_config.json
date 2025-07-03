@@ -1,0 +1,13 @@
+{
+    "workspaceFolder": "/workspace/Documents",
+	"remoteUser": "zc13",
+	"extensions": [
+		"christian-kohler.path-intellisense",
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"ms-toolsai.jupyter",
+		"ms-toolsai.jupyter-keymap",
+		"ms-toolsai.jupyter-renderers",
+		"streetsidesoftware.code-spell-checker"
+	]
+}

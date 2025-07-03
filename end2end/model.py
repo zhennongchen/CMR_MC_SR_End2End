@@ -11,12 +11,15 @@ from tensorflow.keras.layers import Layer
 from tensorflow.keras.layers import Activation
 from voxelmorph.tf.layers import SpatialTransformer
 
+import CMR_HFpEF_Analysis.Defaults as Defaults
+
 conv_dict = {2: Conv2D, 3: Conv3D}
 max_pooling_dict = {2:MaxPool2D, 3:MaxPool3D}
 average_pooling_dict = {2: AveragePooling2D, 3: AveragePooling3D}
 up_sampling_dict = {2: UpSampling2D, 3: UpSampling3D}
 zero_sampling_dict = {2: ZeroPadding2D, 3: ZeroPadding3D}
 
+cg = Defaults.Parameters()
 
 def conv_bn_relu_1x(nb_filter, kernel_size, subsample = (1,), dimension = 3, batchnorm = False, activation = False):
     stride = subsample * dimension # stride
