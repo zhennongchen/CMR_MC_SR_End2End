@@ -11,6 +11,9 @@ Authors: Zhennong Chen, Hui Ren, Quanzheng Li, Xiang Li<br />
 ## Description
 Accurate reconstruction of a high-resolution 3D volume of the heart is critical for comprehensive cardiac assessments. However, cardiac magnetic resonance (CMR) data is usually acquired as a stack of 2D short-axis (SAX) slices, which suffers from the inter-slice misalignment due to cardiac motion and data sparsity from large gaps between SAX slices. Therefore, we aim to propose an end-to-end deep learning (DL) model to address these two challenges simultaneously, employing specific model components for each challenge. The objective is to reconstruct a high-resolution 3D volume of the heart (VHR) from acquired CMR SAX slices (VLR). We define the transformation from VLR to VHR as a sequential process of **motion correction** and **super-resolution**. Accordingly, our DL model incorporates two distinct components. The first component conducts **motion correction** by predicting displacement vectors to re-position each SAX slice accurately. The second component takes the motion-corrected SAX slices from the first component and performs the **super-resolution** to fill the data gaps. These two components operate in a sequential way, and the entire model is trained ***end-to-end***.<br />
 
+- our model only works on segmented data (e.g., image with LV, myo and RV segmented) rather than original CMR image.<br />
+- our goal is to build 3D cardiac volumes from segmented low-resolution contours.<br />
+
 
 ## User Guideline
 ### Environment Setup
