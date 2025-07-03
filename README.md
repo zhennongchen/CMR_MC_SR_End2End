@@ -39,7 +39,7 @@ we have design our study into 3 steps.<br />
 
 - **step3: prediction**: use ```step3_predict.py``` <br /> 
     - it uses trained model to do CMR motion correction and super-resolution. 
-    - it save ```pred_img_LR.nii.gz``` as motion-corrected image (still in low z-resolution) and ```pred_img_HR.nii.gz``` as super-resolutioned image (in high resolution) --> sequential correction of CMR data
+    - it saves ```pred_img_LR.nii.gz``` as motion-corrected image (still in low z-resolution) and ```pred_img_HR.nii.gz``` as super-resolutioned image (in high resolution) --> sequential correction of CMR data
 
 
 ### Additional guidelines 
