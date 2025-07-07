@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo docker build -t ct_projector:0.5.4 .
+sudo docker build -t zc_tensorflow:1.0 .
