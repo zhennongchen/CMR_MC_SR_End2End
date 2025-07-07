@@ -22,4 +22,4 @@ sudo docker run -it --runtime=nvidia --name=docker_ex --network="bridge" \
 -e CONTAINER_GID=${HOST_GROUP_ID} \
 -e CONTAINER_UNAME=${HOST_USER_NAME} \
 -e CONTAINER_WORKDIR=${CONTAINER_WORKDIR} \
-ct_projector:0.5.4
+zc_tensorflow:1.0
